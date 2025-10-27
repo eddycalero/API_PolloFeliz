@@ -1,0 +1,11 @@
+.vs
+UNI.Commons/bin
+UNI.Commons/obj
+UNI.Models/bin
+UNI.Models/obj
+UNI.Repository/bin
+UNI.Repository/obj
+UNI.Services/bin
+UNI.Services/obj
+UNI.WebApi/bin
+UNI.WebApi/obj
