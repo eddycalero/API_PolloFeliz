@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace UNI.Models
 {
@@ -10,8 +6,8 @@ namespace UNI.Models
     public class SubCategory
     {
         [Key]
-        public string name { get; set; }
         public int subcategory_id { get; set; }
+        public string name { get; set; } = string.Empty;
         public bool is_active { get; set; }
 
        

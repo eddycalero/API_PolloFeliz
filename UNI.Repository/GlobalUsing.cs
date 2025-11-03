@@ -1,2 +1,2 @@
 ﻿global using Dapper.Contrib.Extensions;
-global using Microsoft.EntityFrameworkCore;
+global using UNI.Models;

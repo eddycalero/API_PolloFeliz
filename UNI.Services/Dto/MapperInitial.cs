@@ -1,0 +1,17 @@
+﻿
+using AutoMapper;
+using UNI.Models;
+namespace UNI.Services
+{
+    public class MapperInitial: Profile
+    {
+        public MapperInitial()
+        {
+            CreateMap<Category, CategoryCreateDto>()
+                .ForMember(origen => origen.Name, dest => dest.MapFrom(x => x.name))
+                .ForMember(origen => origen.IsActive, dest => dest.MapFrom(x => x.is_active))
+                .ForMember(origen => origen.CategoryId, dest => dest.MapFrom(x => x.category_id))
+                .ReverseMap();
+        }
+    }
+}
