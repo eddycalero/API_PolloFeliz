@@ -8,6 +8,7 @@ namespace UNI.Repository
         void Rollback();
 
         public ICategoryRepository CategoryRepository { get; }
+        public IUnitMeasureRepository UnitMeasureRepository { get; }
     }
 
 

@@ -6,5 +6,8 @@ namespace UNI.Repository
     {
         Task<int> CreateAsync(T entity);
         Task<List<T>> GetAllAsync();
+        Task<bool> DeleteAsync(T entity);
+        Task<T> GetByIdAsync(int id);
+        Task UpdateAsync(T entity);
     }
 }

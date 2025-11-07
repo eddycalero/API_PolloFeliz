@@ -31,5 +31,23 @@ namespace UNI.WebApi
 
             return StatusCode(StatusCodes.Status200OK, categoryCreates);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+
+            bool categoryDelete = await serviceManager.CategoryService.DeleteCategoryById(id);
+
+            return StatusCode(StatusCodes.Status200OK, categoryDelete);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryCreateDto createDto)
+        {
+
+            CategoryCreateDto categoryUpdate = await serviceManager.CategoryService.UpdateCategory(id, createDto);
+
+            return StatusCode(StatusCodes.Status200OK, categoryUpdate);
+        }
     }
 }

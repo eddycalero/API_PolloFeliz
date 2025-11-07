@@ -36,6 +36,28 @@ namespace UNI.Services
             return categoryCreateDto;
         }
 
+        public async Task<bool> DeleteCategoryById(int id)
+        {
+
+            try
+            {
+                Category category = await _uni.CategoryRepository.GetByIdAsync(id);
+
+                if (category is null)
+                {
+                    return false;
+                }
+
+                await _uni.CategoryRepository.DeleteAsync(category);
+            }
+            catch (Exception ex) 
+            {
+               
+            }
+
+            return true;
+        }
+
         public async Task<List<CategoryCreateDto>> GetAllCategories()
         {
             List<CategoryCreateDto> ListCategory = new List<CategoryCreateDto>();
@@ -51,6 +73,33 @@ namespace UNI.Services
             }
 
             return ListCategory;
+        }
+
+        public Task<CategoryCreateDto> GetCategoryById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<CategoryCreateDto> UpdateCategory(int id, CategoryCreateDto categoryCreateDto)
+        { 
+            
+            _uni.BeginTransaction();
+            try
+            {
+                Category category = await _uni.CategoryRepository.GetByIdAsync(id);
+                _mapper.Map(categoryCreateDto, category);
+
+                await _uni.CategoryRepository.UpdateAsync(category);
+
+                _uni.Commit();
+            }
+            catch (Exception ex) 
+            {
+                 _uni.Rollback();
+            }
+            
+            return categoryCreateDto;   
+
         }
     }
 }
