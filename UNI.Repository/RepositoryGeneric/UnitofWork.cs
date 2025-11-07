@@ -13,11 +13,15 @@ namespace UNI.Repository
 
         public IUnitMeasureRepository UnitMeasureRepository { get; }
 
+        public ISubCategoryRepository SubCategoryRepository { get; }
+        
+
         public UnitofWork(UNIDapperContext uNIDapper)
         {
             _context = uNIDapper;
             CategoryRepository = new CategoryRepository(_context);
             UnitMeasureRepository = new UnitMeasureRepository(_context);
+            SubCategoryRepository = new SubCategoryRepository(_context);
         }
 
         public void BeginTransaction()

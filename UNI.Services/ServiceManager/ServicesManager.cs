@@ -9,16 +9,19 @@ namespace UNI.Services
     {
         private readonly Lazy<CategoryServices> categoryServices;
         private readonly Lazy<UnitMeasureServices> unitMeasureServices;
+        private readonly Lazy<SubCategoryServices> subCategoryServices;
         public ServicesManager(IUnitofWork unitofWork, IMapper mapper) 
         {
             categoryServices = new Lazy<CategoryServices>(() => new CategoryServices(unitofWork, mapper));
             unitMeasureServices = new Lazy<UnitMeasureServices>(() => new UnitMeasureServices(unitofWork, mapper));
-
+            subCategoryServices = new Lazy<SubCategoryServices>(()  => new SubCategoryServices(unitofWork,mapper));
         }
 
 
         public ICategoryService CategoryService => categoryServices.Value;
 
         public IUnitMeasureServices UnitMeasureService => unitMeasureServices.Value;
+
+        public ISubCategoryServices SubCategoryService => subCategoryServices.Value;
     }
 }

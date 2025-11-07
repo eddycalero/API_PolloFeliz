@@ -9,6 +9,8 @@ namespace UNI.Repository
 
         public ICategoryRepository CategoryRepository { get; }
         public IUnitMeasureRepository UnitMeasureRepository { get; }
+
+        public ISubCategoryRepository SubCategoryRepository { get; }
     }
 
 
