@@ -1,5 +1,4 @@
 ﻿
-
 using System.Data;
 
 namespace UNI.Repository
@@ -10,18 +9,16 @@ namespace UNI.Repository
         private bool _disposed;
 
         public ICategoryRepository CategoryRepository { get; }
-
         public IUnitMeasureRepository UnitMeasureRepository { get; }
-
         public ISubCategoryRepository SubCategoryRepository { get; }
-        
-
+        public IProductRepository ProductRepository { get; }
         public UnitofWork(UNIDapperContext uNIDapper)
         {
             _context = uNIDapper;
             CategoryRepository = new CategoryRepository(_context);
             UnitMeasureRepository = new UnitMeasureRepository(_context);
             SubCategoryRepository = new SubCategoryRepository(_context);
+            ProductRepository = new ProductRepository(_context);    
         }
 
         public void BeginTransaction()

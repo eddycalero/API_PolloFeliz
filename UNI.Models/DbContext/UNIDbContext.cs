@@ -10,7 +10,6 @@ namespace UNI.Models
         public DbSet<SubCategory> SubCategories { get; set; }
         public UNIDbContext(DbContextOptions<UNIDbContext> dbContext):base(dbContext)
         {
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,8 +50,24 @@ namespace UNI.Models
                 model.Property(x => x.subcategory_id).ValueGeneratedOnAdd();
                 model.HasIndex(x => x.name).IsUnique();
             });
+
+            modelBuilder.Entity<Category>()
+                .HasMany(x => x.SubCategories)
+                .WithOne(x => x.Category)
+                .HasForeignKey(x => x.category_id)
+                .HasPrincipalKey(x => x.category_id);
+
+            modelBuilder.Entity<SubCategory>()
+                .HasMany(x => x.Products)
+                .WithOne(x => x.SubCategory)
+                .HasForeignKey(x => x.sub_category_id)
+                .HasPrincipalKey(x => x.subcategory_id);
+
+            modelBuilder.Entity<UnitMeasure>()
+                .HasMany(x => x.Products)
+                .WithOne(x => x.UnitMeasure)
+                .HasForeignKey(x => x.unit_measure_id)
+                .HasPrincipalKey(x => x.unit_measure_id);
         }
-
-
     }
 }
