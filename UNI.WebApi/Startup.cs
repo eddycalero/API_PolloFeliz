@@ -18,6 +18,15 @@ public class Startup
         services.ConfigureSql(Configuration);
         services.ConfigureAddScopd();
         services.ConfigureMapper();
+        services.AddCors(x =>
+        {
+            x.AddPolicy("POLLO-FELIZ", builer =>
+            {
+                builer.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
+        });
 
         services.AddSwaggerGen(options =>
         {
@@ -54,6 +63,7 @@ public class Startup
         app.UseHttpsRedirection();
 
         app.UseRouting();
+        app.UseCors("POLLO-FELIZ");
 
         app.UseAuthorization();
 
