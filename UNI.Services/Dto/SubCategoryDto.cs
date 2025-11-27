@@ -6,5 +6,7 @@ namespace UNI.Services
         public int SubCategoryId { get; set; }
         public string Name { get; set; } = string.Empty;
         public bool IsActive { get; set; }
+
+        public int CategoryId { get; set; } 
     }
 }

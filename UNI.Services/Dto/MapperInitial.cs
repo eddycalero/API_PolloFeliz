@@ -23,6 +23,7 @@ namespace UNI.Services
                .ForMember(origen => origen.Name, dest => dest.MapFrom(x => x.name))
                .ForMember(origen => origen.IsActive, dest => dest.MapFrom(x => x.is_active))
                .ForMember(origen => origen.SubCategoryId, dest => dest.MapFrom(x => x.subcategory_id))
+               .ForMember(origen => origen.CategoryId, dest => dest.MapFrom(x => x.category_id))
                .ReverseMap();   
         }
     }

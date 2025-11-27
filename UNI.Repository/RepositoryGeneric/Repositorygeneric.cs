@@ -1,4 +1,5 @@
-﻿
+﻿using Dapper;
+using UNI.Commons;
 
 namespace UNI.Repository
 {
@@ -9,6 +10,21 @@ namespace UNI.Repository
         {
             _context = dapperContext;
         }
+
+        public async Task<dynamic?> QueryFirst(string query)
+        {
+            dynamic? model = await _context.Connection!.QueryFirstOrDefaultAsync<string>(query);
+
+            if (string.IsNullOrEmpty(model))
+            {
+                throw new InvalidOperationException("No se encontró un resultado para el query.");
+            }
+
+            dynamic result = JsonUtil.Deserealizar(model);
+
+            return result;
+        }
+
         public async Task<int> CreateAsync(T entity)
         {
             return await _context.Connection.InsertAsync(entity);

@@ -4,8 +4,7 @@
     {
         public Task<SubCategoryDto> CreateSubCategoryDto(SubCategoryDto SubCategoryDto);
 
-
-        public Task<List<SubCategoryDto>> GetSubCategory();
+        public Task<dynamic> GetSubCategory();
 
         public Task<SubCategoryDto> GetSubCategory(int id);
 

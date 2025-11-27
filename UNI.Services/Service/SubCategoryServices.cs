@@ -1,6 +1,4 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using UNI.Models;
 using UNI.Repository;
 using UNI.Services.IService;
@@ -49,27 +47,24 @@ namespace UNI.Services
             }
             catch (Exception ex)
             {
-
             }
 
             return true;
         }
 
-        public async Task<List<SubCategoryDto>> GetSubCategory()
+        public async Task<dynamic> GetSubCategory()
         {
-            List<SubCategoryDto> ListSubCategory = new List<SubCategoryDto>();
-
             try
             {
-                List<SubCategory> Subcategories = await _uni.SubCategoryRepository.GetAllAsync();
-                ListSubCategory = _mapper.Map<List<SubCategoryDto>>(Subcategories);
+                string query = "select * from category_list()";
+                dynamic? result = await _uni!.SubCategoryRepository!.QueryFirst(query);
+                return result;
             }
             catch (Exception ex)
             {
-
             }
 
-            return ListSubCategory;
+            return null;
         }
 
         public Task<SubCategoryDto> GetSubCategory(int id)
@@ -96,5 +91,6 @@ namespace UNI.Services
 
             return SubCategoryDto;
         }
+
     }
 }

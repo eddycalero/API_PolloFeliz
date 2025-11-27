@@ -27,7 +27,7 @@ namespace UNI.WebApi
         public async Task<IActionResult> GetAllCategory()
         {
 
-            List<SubCategoryDto> SubcategoryCreates = await serviceManager.SubCategoryService.GetSubCategory();
+            dynamic SubcategoryCreates = await serviceManager.SubCategoryService.GetSubCategory();
 
             return StatusCode(StatusCodes.Status200OK, SubcategoryCreates);
         }
