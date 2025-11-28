@@ -52,20 +52,19 @@ namespace UNI.Services
             return true;
         }
 
-        public async Task<List<ProductCreateDto>> GetAllProduct()
+        public async Task<dynamic> GetAllProduct()
         {
-            List<ProductCreateDto> ListProduct = new List<ProductCreateDto>();
-
             try
             {
-                List<Product> categories = await _uni.ProductRepository.GetAllAsync();
-                ListProduct = _mapper.Map<List<ProductCreateDto>>(categories);
+                string query = "select * from product_list()";
+                dynamic? result = await _uni!.SubCategoryRepository!.QueryFirst(query);
+                return result;
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
             }
 
-            return ListProduct;
+            return null;
         }
 
         public Task<ProductCreateDto> GetProductById(int id)

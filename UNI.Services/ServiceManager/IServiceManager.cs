@@ -9,7 +9,7 @@ namespace UNI.Services
         public ICategoryService CategoryService { get; }                                                                                                                     
 
        public IUnitMeasureServices UnitMeasureService { get; }
-
+       public IProductService ProductService { get; }
        public ISubCategoryServices SubCategoryService { get; }
     }
 }

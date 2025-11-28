@@ -24,7 +24,15 @@ namespace UNI.Services
                .ForMember(origen => origen.IsActive, dest => dest.MapFrom(x => x.is_active))
                .ForMember(origen => origen.SubCategoryId, dest => dest.MapFrom(x => x.subcategory_id))
                .ForMember(origen => origen.CategoryId, dest => dest.MapFrom(x => x.category_id))
-               .ReverseMap();   
+               .ReverseMap();
+
+            CreateMap<Product, ProductCreateDto>()
+              .ForMember(origen => origen.Name, dest => dest.MapFrom(x => x.name))
+              .ForMember(origen => origen.IsActive, dest => dest.MapFrom(x => x.is_active))
+              .ForMember(origen => origen.SubCategoryId, dest => dest.MapFrom(x => x.sub_category_id))
+              .ForMember(origen => origen.ProductId, dest => dest.MapFrom(x => x.product_id))
+              .ForMember(origen => origen.UnitMeasureId, dest => dest.MapFrom(x => x.unit_measure_id))
+              .ReverseMap();
         }
     }
 }

@@ -26,6 +26,6 @@ namespace UNI.Services
 
         public ISubCategoryServices SubCategoryService => subCategoryServices.Value;
 
-        public ProductServices ProductServices => productServices.Value;
+        public IProductService ProductService => productServices.Value;
     }
 }

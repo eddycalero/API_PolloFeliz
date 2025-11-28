@@ -13,12 +13,11 @@ namespace UNI.WebApi
             serviceManager = service;
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody] SubCategoryDto subCategoryDto)
+        public async Task<IActionResult> CreateCategory([FromBody] ProductCreateDto subCategoryDto)
         {
 
-            subCategoryDto = await serviceManager.SubCategoryService.CreateSubCategoryDto(subCategoryDto);
+            subCategoryDto = await serviceManager.ProductService.CreateProductDto(subCategoryDto);
 
             return StatusCode(StatusCodes.Status201Created, subCategoryDto);
         }
@@ -26,9 +25,7 @@ namespace UNI.WebApi
         [HttpGet]
         public async Task<IActionResult> GetAllCategory()
         {
-
-            List<SubCategoryDto> SubcategoryCreates = await serviceManager.SubCategoryService.GetSubCategory();
-
+            dynamic SubcategoryCreates = await serviceManager.ProductService.GetAllProduct();
             return StatusCode(StatusCodes.Status200OK, SubcategoryCreates);
         }
 
@@ -42,12 +39,12 @@ namespace UNI.WebApi
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromBody] SubCategoryDto createDto)
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] ProductCreateDto createDto)
         {
 
-            SubCategoryDto SubcategoryUpdate = await serviceManager.SubCategoryService.UpdateSubCategory(id, createDto);
+            createDto = await serviceManager.ProductService.UpdateProduct(id, createDto);
 
-            return StatusCode(StatusCodes.Status200OK, SubcategoryUpdate);
+            return StatusCode(StatusCodes.Status200OK, createDto);
         }
     }
 }
